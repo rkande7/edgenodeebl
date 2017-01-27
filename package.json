@@ -1,0 +1,6 @@
+{
+	"application": "tftp-bootloader-client-app",
+	"version": "2.6.0",
+	"filename": "artik-edge-node.ebl",
+	"sha256sum": "df976001dc6a65954ddbb7264314e335f960ea0546f7330eb6fac0fab35fbbb9"
+}
