@@ -1,0 +1,145 @@
+Starting Edge node manager testing
+
+
+  Edge node manager testing
+    Set Configuration
+URL = http://10.0.0.223/v1.0/service/conf
+{ error: 'none', success: true }
+      ✓ userid and token should set (204ms)
+    Get Configuration
+URL = http://10.0.0.223/v1.0/service/conf
+{"DbusApi":0,"Debug":1,"DefaultConfiguration":{"Currency":"","DeviceName":"Edge Node Manager","Location":"","LocationName":"","Region":""},"EventApi":0,"Lwm2mApi":1,"RestApi":1,"client_id":"","cloudDeviceTypeId":{"ARTIK-030":"","ARTIK-050_EVK":""},"dbPath":"/var/local/enmd.db","discoveryEnableOnStartup":1,"lwm2m_server_address":"coaps+tcp://coaps-api.artik.cloud:5689","pingInterval":30,"resinApplicationId":{"ARTIK-030":"","ARTIK-050_EVK":""},"scan_period":10,"token":"b5c7f2fdd3d04316b9b53d1d682b2571","user_id":"6502a2b39f0549208a0c0e59f6dee58f","webPort":80}
+
+      ✓ userid and token should get and compare with set values
+    Set Discovery
+URL = http://10.0.0.223/v1.0/service
+{ discoverystarted: true }
+      ✓ Set discovery to true
+    Get Discovery
+URL = http://10.0.0.223/v1.0/service
+      ✓ Get discovery
+    Get all edge node devices
+URL = http://10.0.0.223/v1.0/devices
+[ { action: { factoryreset: false, reboot: false },
+    cloud: 
+     { akcid: 'null',
+       akcprovisioned: false,
+       akctoken: 'null',
+       resincommitid: 'null',
+       resinid: 'null',
+       resinprovisioned: false },
+    configuration: 
+     { currency: 'EUR',
+       location: '2.3522219000000177,48.85661400000001',
+       locationname: 'Paris',
+       name: 'ARTIK-030',
+       params: 'null',
+       prof: 'oic.r.light.brightness',
+       region: 'Ile-de-France' },
+    hardware: 
+     { date: '2016.03.14',
+       id: 'EFR32MG-BRD4300D',
+       modelnum: 'ARTIK-030',
+       name: 'Samsung',
+       url: 'www.artik.io',
+       version: 'B01' },
+    name: 'ARTIK-030',
+    protocol: { datamodel: 'res.1.0.0', spec: 'core.1.0.0' },
+    software: 
+     { firmware: '2.6.0',
+       os: '3.5.2',
+       platform: '1.0',
+       supporturl: 'www.artik.io/support',
+       systime: '2016-06-15' },
+    status: 
+     { address: 'coap://[2001:db8:385:9318:8906:94d2:b556:57e0]:5683',
+       state: 'Online' },
+    uuid: 'd2dd0fd86764418f9a29000b571b02ce' },
+  { action: { factoryreset: false, reboot: false },
+    cloud: 
+     { akcid: 'null',
+       akcprovisioned: false,
+       akctoken: 'null',
+       resincommitid: 'null',
+       resinid: 'null',
+       resinprovisioned: false },
+    configuration: null,
+    hardware: 
+     { date: '20161018.225513',
+       id: '710MWBA1100L0046',
+       modelnum: 'ARTIK710S',
+       name: 'Samsung',
+       url: 'http://www.artik.io',
+       version: '6' },
+    name: 'Edge Node Manager',
+    protocol: { datamodel: 'res.1.1.0,sh.1.1.0', spec: 'core.1.1.0' },
+    software: 
+     { firmware: '4.4.19-0710GS0F-44F-01Q1',
+       os: '0710GS0F-44F-01Q1',
+       platform: '6',
+       supporturl: 'Unavailable',
+       systime: 'Unavailable' },
+    status: 
+     { address: 'coap://[fe80::290:4cff:fe33:2211                    0x6142p0]:46033',
+       state: 'Online' },
+    uuid: 'd2dd0fd86764418f9a29702c1f23d3b1' } ]
+
+ device 0 details = {"action":{"factoryreset":false,"reboot":false},"cloud":{"akcid":"null","akcprovisioned":false,"akctoken":"null","resincommitid":"null","resinid":"null","resinprovisioned":false},"configuration":{"currency":"EUR","location":"2.3522219000000177,48.85661400000001","locationname":"Paris","name":"ARTIK-030","params":"null","prof":"oic.r.light.brightness","region":"Ile-de-France"},"hardware":{"date":"2016.03.14","id":"EFR32MG-BRD4300D","modelnum":"ARTIK-030","name":"Samsung","url":"www.artik.io","version":"B01"},"name":"ARTIK-030","protocol":{"datamodel":"res.1.0.0","spec":"core.1.0.0"},"software":{"firmware":"2.6.0","os":"3.5.2","platform":"1.0","supporturl":"www.artik.io/support","systime":"2016-06-15"},"status":{"address":"coap://[2001:db8:385:9318:8906:94d2:b556:57e0]:5683","state":"Online"},"uuid":"d2dd0fd86764418f9a29000b571b02ce"}
+
+ device 1 details = {"action":{"factoryreset":false,"reboot":false},"cloud":{"akcid":"null","akcprovisioned":false,"akctoken":"null","resincommitid":"null","resinid":"null","resinprovisioned":false},"configuration":null,"hardware":{"date":"20161018.225513","id":"710MWBA1100L0046","modelnum":"ARTIK710S","name":"Samsung","url":"http://www.artik.io","version":"6"},"name":"Edge Node Manager","protocol":{"datamodel":"res.1.1.0,sh.1.1.0","spec":"core.1.1.0"},"software":{"firmware":"4.4.19-0710GS0F-44F-01Q1","os":"0710GS0F-44F-01Q1","platform":"6","supporturl":"Unavailable","systime":"Unavailable"},"status":{"address":"coap://[fe80::290:4cff:fe33:2211                    0x6142p0]:46033","state":"Online"},"uuid":"d2dd0fd86764418f9a29702c1f23d3b1"}
+      ✓ Get all edge node devices and check is there are any A0 family
+    getFirmwareVersionForUUID
+uuid = d2dd0fd86764418f9a29000b571b02ce
+URL = http://10.0.0.223/v1.0/devices/d2dd0fd86764418f9a29000b571b02ce/firmware
+{"version":"2.6.0"}
+
+      ✓ getFirmwareVersionForUUID
+    registerDevice
+name = Artik030
+uuid = d2dd0fd86764418f9a29000b571b02ce
+URL = http://10.0.0.223/v1.0/service/AKCProvision
+      1) registerDevice
+    sendMessages
+uuid = d2dd0fd86764418f9a29000b571b02ce
+URL = http://10.0.0.223/v1.0/devices/d2dd0fd86764418f9a29000b571b02ce
+{ error: 'none', success: true }
+{ error: 'none', success: true }
+      ✓ sendMessages (1024ms)
+    sendMessages
+uuid = d2dd0fd86764418f9a29000b571b02ce
+URL = http://10.0.0.223/v1.0/devices/d2dd0fd86764418f9a29000b571b02ce/messages
+{ error: 'none', success: true }
+      ✓ sendMessages
+    sendActions
+uuid = d2dd0fd86764418f9a29000b571b02ce
+URL = http://10.0.0.223/v1.0/devices/d2dd0fd86764418f9a29000b571b02ce/messages
+{ error: 'none', success: true }
+      ✓ sendMessages
+uuid = d2dd0fd86764418f9a29000b571b02ce
+URL = http://10.0.0.223/v1.0/devices/d2dd0fd86764418f9a29000b571b02ce/messages
+{ error: 'none', success: true }
+      ✓ sendActions setOn
+uuid = d2dd0fd86764418f9a29000b571b02ce
+URL = http://10.0.0.223/v1.0/devices/d2dd0fd86764418f9a29000b571b02ce/messages
+{ error: 'none', success: true }
+      ✓ sendActions SetOff
+    deleteDevice
+uuid = d2dd0fd86764418f9a29000b571b02ce
+URL = http://10.0.0.223/v1.0/service/AKCProvision
+{ error: 'none', success: true }
+      ✓ deleteDevice (373ms)
+
+
+  12 passing (4s)
+  1 failing
+
+  1) Edge node manager testing registerDevice registerDevice:
+     Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves.
+  
+
+
+
+[mochawesome] Report JSON saved to /root/enmd/mochawesome-reports/mochawesome.json
+
+[mochawesome] Report HTML saved to /root/enmd/mochawesome-reports/mochawesome.html
+
